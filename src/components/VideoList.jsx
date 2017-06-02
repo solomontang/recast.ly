@@ -1,4 +1,4 @@
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list media">
     <VideoListEntry />
     <VideoListEntry />
