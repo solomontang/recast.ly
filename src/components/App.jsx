@@ -1,6 +1,5 @@
 class App extends React.Component {
   constructor(props) {
-    super(props);
     this.state = {
       currentVideo: {snippet: {title: '', description: '', thumbnails:{default: {url:''}}}, id: {videoID: ''}, statistics: {commentCount: '0', viewCount: '0'}},
       videos: [{snippet: {title: '', description: '', thumbnails:{default: {url:''}}}}],
@@ -39,9 +38,17 @@ class App extends React.Component {
   render() {
     return (<div>
       <Nav search={this.handleNavSearch.bind(this)} />
+
       <div className="col-md-8">
         <VideoPlayer video={this.state.currentVideo} />
       </div>
+
+      <div className="col-md-8">
+        <Autoplay />
+      </div>
+
+  
+
       <div className="col-md-8">
         <VideoDetails video={this.state.currentVideo} />
       </div>
