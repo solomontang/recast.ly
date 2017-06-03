@@ -57,6 +57,11 @@ body {
   padding: 8px;
 }
 
+.videoDetails {
+  padding: 8px;
+
+}
+
 .video-list-entry-title {
   font-weight: bold;
 }

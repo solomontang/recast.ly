@@ -11,7 +11,22 @@ var searchYouTube = (options, callback) => {
       type: 'video'
     },
     success: (data) => {
-      callback(data.items);
+        //take the ids from data
+        //call search video
+          //pass in callback to set the state
+      console.log('search', data);
+      var ids = data.items.map(function(item) {
+        return item.id.videoId;
+      }).join(',');
+
+      var option = {
+        key: options.key,
+        id: ids
+      };
+      searchVideo(option, callback);     
+
+
+      // callback(data.items);
     },
     dataType: 'json'
   });

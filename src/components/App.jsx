@@ -11,59 +11,43 @@ class App extends React.Component {
   
 
   componentDidMount() {
-
-    //prepare function outside to bind properly
-    var setTheState = function(data) {
-      this.setState({
-        currentVideo: data[0],
-        videos: data
-      });
-
-    };
-
-    //fetch initital cat data
-    this.props.search({
-      key: YOUTUBE_API_KEY, 
-      query: 'cat',
-      max: 5},
-
-      setTheState.bind(this)
-
-    );
+    this.callSearch('cat', this.setTheState.bind(this));
   }
 
-  //handleClick
+  handleNavSearch(input) {
+    this.callSearch(input, this.setTheState.bind(this));
+  }
+  
   handleClick(video, e) {
     this.setState({currentVideo: video});
   }
 
-  handleNavSearch(input) {
-    console.log(input);
-    var setTheState = function(data) {
-      this.setState({
-        currentVideo: data[0],
-        videos: data
-      });
-    };  
-
+  callSearch(query = 'cat', callback) {
     this.props.search({
-      key: YOUTUBE_API_KEY,
-      query: input,
-      max: 5
-    },
-      setTheState.bind(this)
+      key: YOUTUBE_API_KEY, 
+      query: query,
+      max: 5},
+      callback
     );
+  } 
 
+  setTheState(data) {
+    this.setState({
+      currentVideo: data[0],
+      videos: data
+    });
   }
   
   render() {
-    // console.log(this.state.currentVideo);
     return (<div>
       <Nav search={this.handleNavSearch.bind(this)} />
-      <div className="col-md-7">
+      <div className="col-md-8">
         <VideoPlayer video={this.state.currentVideo} />
       </div>
-      <div className="col-md-5">
+      <div className="col-md-8">
+        <VideoDetails video={this.state.currentVideo}/>
+      </div>
+      <div className="col-md-8">
         <VideoList videos={this.state.videos} handleClick = {this.handleClick.bind(this)} />
       </div>
     </div>);
