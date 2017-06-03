@@ -8,7 +8,7 @@ class App extends React.Component {
       // videos: this.props.videos
     };
   }
-
+  
 
   componentDidMount() {
 
@@ -44,7 +44,6 @@ class App extends React.Component {
         currentVideo: data[0],
         videos: data
       });
-
     };  
 
     this.props.search({
