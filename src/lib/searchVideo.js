@@ -1,3 +1,33 @@
+// var searchVideo = (options, callback) => {
+//   var myRequest = {
+//     method: 'GET',
+//     // url: 'https://www.googleapis.com/youtube/v3/videos',
+//     headers: {
+//       key: options.key,
+//       id: options.id,
+//       part: 'snippet, statistics',
+      
+//     },
+//     dataType: 'json'
+//   };
+
+//   var url = 'https://www.googleapis.com/youtube/v3/videos?' + $.param({
+//     key: options.key,
+//     id: options.id,
+//     part: 'snippet, statistics',
+//     dataType: 'json'
+//   });
+
+//   fetch(url).then( data => {
+//     var response = new Response(data.blob());
+//     console.log('response', response)
+//     console.log(data)
+//   }).then (data => {
+//     console.log(data);
+//   });
+
+// };
+
 var searchVideo = (options, callback) => {
   console.log(callback);
   $.ajax({
@@ -17,3 +47,24 @@ var searchVideo = (options, callback) => {
 };
 
 window.searchVideo = searchVideo;
+
+
+
+
+
+
+// var myHeaders = new Headers();
+
+// var myInit = { method: 'GET',
+//                headers: myHeaders,
+//                mode: 'cors',
+//                cache: 'default' };
+
+// var myRequest = new Request('flowers.jpg', myInit);
+
+// fetch(myRequest).then(function(response) {
+//   return response.blob();
+// }).then(function(myBlob) {
+//   var objectURL = URL.createObjectURL(myBlob);
+//   myImage.src = objectURL;
+// });
