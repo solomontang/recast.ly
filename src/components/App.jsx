@@ -2,9 +2,35 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: this.props.videos[0],
-      videos: this.props.videos
+      currentVideo: {snippet: {title: '', description: '', thumbnails:{default: {url:''}}}, id: {videoID: ''}},
+      videos: [{snippet: {title: '', description: '', thumbnails:{default: {url:''}}}}]
+      // currentVideo: [this.props.videos[0]],
+      // videos: this.props.videos
     };
+  }
+
+
+  componentDidMount() {
+
+    //prepare function outside to bind properly
+    var setTheState = function(data) {
+      this.setState({
+        currentVideo: data[0],
+        videos: data
+      });
+
+    };
+
+    //fetch initital cat data
+    this.props.search({
+      key: YOUTUBE_API_KEY, 
+      query: 'cat',
+      max: 5},
+
+      setTheState.bind(this)
+
+    );
+    
   }
 
   //handleClick

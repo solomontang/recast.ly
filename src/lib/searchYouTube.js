@@ -18,3 +18,6 @@ var searchYouTube = (options, callback) => {
 };
 
 window.searchYouTube = searchYouTube;
+
+
+//searchYouTube({key:YOUTUBE_API_KEY, query:'cat', max: 5}, function(data){console.log(data)})
