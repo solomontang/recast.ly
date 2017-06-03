@@ -1,7 +1,6 @@
 var VideoDetails = (props) => {
   return (
-  <div className="videoDetails row" > 
-    {console.log(props)}
+  <div className="videoDetails row" >
     <div className="videoDetails-left video-player-details col-md-6" >
       <h5>Favorites: {props.video.statistics.favoriteCount}</h5>
       <h5>CommentCount: {props.video.statistics.commentCount}</h5>

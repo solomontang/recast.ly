@@ -1,8 +1,12 @@
-var Autoplay = () => {
+var Autoplay = (props) => {
 
   return (   
     <div className="toggle col-md-8" >
-     text
+     <input onChange={props.handleClick} type="checkbox" />
+    
+  <label>
+   Autoplay
+  </label>
     </div>
   );
 
