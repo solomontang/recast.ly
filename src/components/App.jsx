@@ -2,10 +2,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: {snippet: {title: '', description: '', thumbnails:{default: {url:''}}}, id: {videoID: ''}},
-      videos: [{snippet: {title: '', description: '', thumbnails:{default: {url:''}}}}]
-      // currentVideo: [this.props.videos[0]],
-      // videos: this.props.videos
+      currentVideo: {snippet: {title: '', description: '', thumbnails:{default: {url:''}}}, id: {videoID: ''}, statistics: {commentCount: '0', viewCount: '0'}},
+      videos: [{snippet: {title: '', description: '', thumbnails:{default: {url:''}}}}],
     };
   }
   
@@ -34,7 +32,7 @@ class App extends React.Component {
   setTheState(data) {
     this.setState({
       currentVideo: data[0],
-      videos: data
+      videos: data,
     });
   }
   
@@ -45,7 +43,7 @@ class App extends React.Component {
         <VideoPlayer video={this.state.currentVideo} />
       </div>
       <div className="col-md-8">
-        <VideoDetails video={this.state.currentVideo}/>
+        <VideoDetails video={this.state.currentVideo} />
       </div>
       <div className="col-md-8">
         <VideoList videos={this.state.videos} handleClick = {this.handleClick.bind(this)} />

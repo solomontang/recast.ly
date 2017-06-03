@@ -6,10 +6,10 @@ var searchVideo = (options, callback) => {
     data: {
       key: options.key,
       id: options.id,
-      part: 'snippet,statistics'
+      part: 'snippet, statistics'
     },
     success: (data) => {
-      console.log('video', data);
+      console.log(data.items[0].statistics.commentCount);
       callback(data.items);
     },
     dataType: 'json'
