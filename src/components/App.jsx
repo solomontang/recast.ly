@@ -30,24 +30,42 @@ class App extends React.Component {
       setTheState.bind(this)
 
     );
-    
   }
 
   //handleClick
   handleClick(video, e) {
-    console.log('clicked', video);
     this.setState({currentVideo: video});
+  }
+
+  handleNavSearch(input) {
+    console.log(input);
+    var setTheState = function(data) {
+      this.setState({
+        currentVideo: data[0],
+        videos: data
+      });
+
+    };  
+
+    this.props.search({
+      key: YOUTUBE_API_KEY,
+      query: input,
+      max: 5
+    },
+      setTheState.bind(this)
+    );
+
   }
   
   render() {
     // console.log(this.state.currentVideo);
     return (<div>
-      <Nav />
+      <Nav search={this.handleNavSearch.bind(this)} />
       <div className="col-md-7">
-        <VideoPlayer video={this.state.currentVideo}/>
+        <VideoPlayer video={this.state.currentVideo} />
       </div>
       <div className="col-md-5">
-        <VideoList videos={this.state.videos} handleClick = {this.handleClick.bind(this)}/>
+        <VideoList videos={this.state.videos} handleClick = {this.handleClick.bind(this)} />
       </div>
     </div>);
   }
