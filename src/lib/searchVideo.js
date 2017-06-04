@@ -1,52 +1,52 @@
-// var searchVideo = (options, callback) => {
-//   var myRequest = {
-//     method: 'GET',
-//     // url: 'https://www.googleapis.com/youtube/v3/videos',
-//     headers: {
-//       key: options.key,
-//       id: options.id,
-//       part: 'snippet, statistics',
-      
-//     },
-//     dataType: 'json'
-//   };
-
-//   var url = 'https://www.googleapis.com/youtube/v3/videos?' + $.param({
-//     key: options.key,
-//     id: options.id,
-//     part: 'snippet, statistics',
-//     dataType: 'json'
-//   });
-
-//   fetch(url).then( data => {
-//     var response = new Response(data.blob());
-//     console.log('response', response)
-//     console.log(data)
-//   }).then (data => {
-//     console.log(data);
-//   });
-
-// };
-
 var searchVideo = (options, callback) => {
-  console.log(callback);
-  $.ajax({
-    type: 'GET',
-    url: 'https://www.googleapis.com/youtube/v3/videos',
-    data: {
-      key: options.key,
-      id: options.id,
-      part: 'snippet, statistics'
-    },
-    success: (data) => {
-      console.log(data.items[0].statistics.commentCount);
-      callback(data.items);
-    },
+
+  var url = 'https://www.googleapis.com/youtube/v3/videos?' + $.param({
+    key: options.key,
+    id: options.id,
+    part: 'snippet, statistics',
     dataType: 'json'
+  });
+
+  var myHeader = new Headers();
+
+  var myInit = {
+    method: 'GET',
+    headers: myHeader,
+    mode: 'cors',
+    cache: 'default'
+  };
+
+  fetch(url, myInit).then(response => {
+    return response.json().then(function(json) {
+      callback(json.items); 
+    // var response = new Response(data.blob());
+    // console.log('response', response)
+    // console.log(data)
+    });
+  }).catch(data => {
+    console.log(data);
   });
 };
 
-window.searchVideo = searchVideo;
+// var searchVideo = (options, callback) => {
+//   console.log(callback);
+//   $.ajax({
+//     type: 'GET',
+//     url: 'https://www.googleapis.com/youtube/v3/videos',
+//     data: {
+//       key: options.key,
+//       id: options.id,
+//       part: 'snippet, statistics'
+//     },
+//     success: (data) => {
+//       console.log(data.items[0].statistics.commentCount);
+//       callback(data.items);
+//     },
+//     dataType: 'json'
+//   });
+// };
+
+// window.searchVideo = searchVideo;
 
 
 

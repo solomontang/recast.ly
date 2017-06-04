@@ -14,6 +14,7 @@ var searchYouTube = (options, callback) => {
         //take the ids from data
         //call search video
           //pass in callback to set the state
+      console.log(data)
       var ids = data.items.map(function(item) {
         return item.id.videoId;
       }).join(',');
